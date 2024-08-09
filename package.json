@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^14.5.2",
     "axios": "^1.7.3",
     "dotenv": "^16.4.5",
+    "eslint": "^8.57.0",
     "react": "^18.3.1",
     "react-cookie": "^7.2.0",
     "react-dom": "^18.3.1",
@@ -17,13 +18,19 @@
     "web-vitals": "^4.2.3"
   },
   "devDependencies": {
+    "prettier": "^3.3.3",
+    "prettier-eslint": "^16.3.0",
+    "prettier-eslint-cli": "^8.0.1",
     "react-scripts": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "es": "eslint .",
+    "pre": "prettier .",
+    "pe": "prettier-eslint \"src/*.js\" \"src/*/*.jsx\""
   },
   "eslintConfig": {
     "extends": [

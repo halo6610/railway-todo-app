@@ -1,0 +1,5 @@
+@use "variables";
+
+.error-message {
+  color: variable.$error_color;
+}

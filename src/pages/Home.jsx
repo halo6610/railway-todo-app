@@ -5,7 +5,7 @@ import axios from "axios";
 import { Header } from "../components/Header";
 import { url } from "../const";
 import "./home.css";
-
+import { time } from "../time";
 
 export const Home = () => {
   const [isDoneDisplay, setIsDoneDisplay] = useState("todo"); // todo->未完了 done->完了
@@ -48,6 +48,7 @@ export const Home = () => {
   }, [lists]);
 
   const handleSelectList = (id) => {
+		console.log("id",id)
     setSelectListId(id);
     axios.get(`${url}/lists/${id}/tasks`, {
       headers: {
@@ -82,12 +83,25 @@ export const Home = () => {
                   key={key}
                   className={`list-tab-item ${isActive ? "active" : ""}`}
                   onClick={() => handleSelectList(list.id)}
+									//onFocus={() => handleSelectList(list.id)}
+									//tabindex="0"
+									role="button"
+									tabIndex="0"
+									onKeyDown={(e)=>{
+										if(e.key === 'Enter'){
+											handleSelectList(list.id)
+										}
+									}}
                 >
-                  {list.title}
+                <span
+								
+								>{list.title}</span>
                 </li>
+
               )
             })}
           </ul>
+					
           <div className="tasks">
             <div className="tasks-header">
               <h2>タスク一覧</h2>
@@ -99,7 +113,7 @@ export const Home = () => {
                 <option value="done">完了</option>
               </select>
             </div>
-            <Tasks tasks={tasks} selectListId={selectListId} isDoneDisplay={isDoneDisplay} />
+            <Tasks tasks={tasks} selectListId={selectListId} isDoneDisplay={isDoneDisplay}/>
           </div>
         </div>
       </main>
@@ -109,7 +123,7 @@ export const Home = () => {
 
 // 表示するタスク
 const Tasks = (props) => {
-  const { tasks, selectListId, isDoneDisplay } = props;
+  const { tasks, selectListId, isDoneDisplay,} = props;
   if (tasks === null) return <></>
 
   if(isDoneDisplay == "done"){
@@ -124,12 +138,13 @@ const Tasks = (props) => {
               {task.title}<br />
               {task.done ? "完了" : "未完了"}
             </Link>
+						
           </li>
         ))}
       </ul>
     )
   }
-
+	//未完了
   return (
     <ul>
       {tasks.filter((task) => {
@@ -140,6 +155,7 @@ const Tasks = (props) => {
           <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
             {task.title}<br />
             {task.done ? "完了" : "未完了"}
+						　期限:{time.showLimit(task.limit)}({time.toLimit(task.limit)})
           </Link>
         </li>
       ))}

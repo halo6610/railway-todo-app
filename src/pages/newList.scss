@@ -1,3 +1,5 @@
+@charset "utf-8";
+@use "variables";
 .new-list {
   width: 1000px;
   margin: 0 auto;
@@ -13,9 +15,9 @@
 }
 
 .new-list-button {
-  background-color: #242F9B;
+  background-color: variables.$theme_color;
   color: #ffffff;
   width: 80px;
   height: 40px;
   border-radius: 5px;
-}/*# sourceMappingURL=newList.css.map */
+}

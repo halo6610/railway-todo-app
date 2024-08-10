@@ -1,3 +1,5 @@
+@charset "utf-8";
+@use "variables" as v;
 .signin {
   width: 500px;
   margin: 0 auto;
@@ -19,7 +21,7 @@
 }
 
 .signin-button {
-  background-color: #242F9B;
+  background-color: variables.$theme_color;
   color: #ffffff;
   width: 100px;
   height: 40px;
@@ -27,5 +29,5 @@
 }
 
 .error-message {
-  color: #ff3333;
-}/*# sourceMappingURL=signin.css.map */
+  color: v.$error_color;
+}

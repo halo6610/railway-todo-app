@@ -13,16 +13,20 @@ export const EditTask = () => {
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
   const [isDone, setIsDone] = useState();
+	const [date, setDate] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
+	const handleDateChange = (e) => setDate(e.target.value)
+
   const handleIsDoneChange = (e) => setIsDone(e.target.value === "done");
   const onUpdateTask = () => {
     console.log(isDone)
     const data = {
       title: title,
       detail: detail,
-      done: isDone
+      done: isDone,
+			limit:`${date}:00Z`
     }
 
     axios.put(`${url}/lists/${listId}/tasks/${taskId}`, data, {
@@ -64,6 +68,8 @@ export const EditTask = () => {
       setTitle(task.title)
       setDetail(task.detail)
       setIsDone(task.done)
+			let limarray=task.limit.split(':')
+			setDate(limarray[0]+":"+limarray[1])
     })
     .catch((err) => {
       setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
@@ -81,7 +87,9 @@ export const EditTask = () => {
           <input type="text" onChange={handleTitleChange} className="edit-task-title" value={title} /><br />
           <label>詳細</label><br />
           <textarea type="text" onChange={handleDetailChange} className="edit-task-detail" value={detail} /><br />
-          <div>
+          <label>期限</label><br />
+          <input type="datetime-local" onChange={handleDateChange} className="new-task-date" value={date}/><br /><br />
+					<div>
             <input type="radio" id="todo" name="status" value="todo" onChange={handleIsDoneChange} checked={isDone === false ? "checked" : ""} />未完了
             <input type="radio" id="done" name="status" value="done" onChange={handleIsDoneChange} checked={isDone === true ? "checked" : ""} />完了
           </div>

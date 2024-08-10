@@ -1,7 +1,10 @@
+@charset "utf-8";
+@use "../pages/variables";
+ 
 .header {
   width: 100%;
   height: 80px;
-  background-color: #242F9B;
+  background-color: variables.$theme_color;
   color: #ffffff;
   display: flex;
   justify-content: space-between;
@@ -10,4 +13,4 @@
 .sign-out-button {
   color: #ffffff;
   margin: auto 25px auto auto;
-}/*# sourceMappingURL=header.css.map */
+}

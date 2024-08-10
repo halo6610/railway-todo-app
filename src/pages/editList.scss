@@ -1,7 +1,6 @@
-.error-message {
-  color: #ff3333;
-}
-
+@charset "utf-8";
+@use "variables";
+@use "error";
 .edit-list {
   width: 1000px;
   margin: 0 auto;
@@ -17,8 +16,8 @@
 }
 
 .delete-list-button {
-  color: #ff3333;
-  border: solid 1px #ff3333;
+  color: variables.$error_color;
+  border: solid 1px variables.$error_color;
   width: 80px;
   height: 40px;
   margin: 25px 5px;
@@ -26,9 +25,10 @@
 }
 
 .edit-list-button {
-  background-color: #242F9B;
+  background-color: variables.$theme_color;
   color: #ffffff;
   width: 80px;
   height: 40px;
   border-radius: 5px;
-}/*# sourceMappingURL=editList.css.map */
+}
+

@@ -11,17 +11,24 @@ export const NewTask = () => {
   const [lists, setLists] = useState([]);
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
+	const [date, setDate] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [cookies] = useCookies();
   const navigate = useNavigate();
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
+	const handleDateChange = (e) => {
+		//2022-07-15T11:11:11Z
+		//2024-09-01T12:00
+		setDate(`${e.target.value}`)
+	};
   const handleSelectList = (id) => setSelectListId(id);
   const onCreateTask = () => {
     const data = {
       title: title,
       detail: detail,
       done: false,
+			limit:`${date}:00Z`
     };
     axios.post(`${url}/lists/${selectListId}/tasks`, data, {
         headers: {
@@ -69,7 +76,9 @@ export const NewTask = () => {
           <input type="text" onChange={handleTitleChange} className="new-task-title" /><br />
           <label>詳細</label><br />
           <textarea type="text" onChange={handleDetailChange} className="new-task-detail" /><br />
-          <button type="button" className="new-task-button" onClick={onCreateTask}>作成</button>
+					<label>期限</label><br />
+          <input type="datetime-local" onChange={handleDateChange} className="new-task-date" /><br /><br />
+					<button type="button" className="new-task-button" onClick={onCreateTask}>作成</button>
         </form>
       </main>
     </div>

@@ -1,7 +1,5 @@
-.error-message {
-  color: #ff3333;
-}
-
+@use "variables";
+@use "error";
 .taskList {
   margin: 50px auto;
   list-style: none;
@@ -21,7 +19,9 @@
   list-style: none;
   display: flex;
   overflow-x: auto;
+	
 }
+
 
 .list-tab-item {
   flex-shrink: 0;
@@ -29,13 +29,18 @@
   padding: 0 25px;
   text-overflow: normal;
   margin-right: 5px;
-  border: solid 1px #242F9B;
+  border: solid 1px variables.$theme_color;
   justify-content: center;
   align-items: center;
 }
+button:focus {
+  outline: 2px solid crimson;
+  border-radius: 3px;
+}
+
 
 .active {
-  background-color: #242F9B;
+  background-color: variables.$theme_color;
   color: #ffffff;
 }
 
@@ -73,4 +78,4 @@
 
 .display-select {
   width: 100%;
-}/*# sourceMappingURL=home.css.map */
+}
